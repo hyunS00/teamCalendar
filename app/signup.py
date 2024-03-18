@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for
-from app import db
+from app.db import db
 
 def signup():
     # todo : 회원가입 페이지로 변경하기
