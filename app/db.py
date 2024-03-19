@@ -6,3 +6,4 @@ db = client['first-jungle']
 
 # user 컬렉션
 users = db['users']
+groups = db["groups"]
