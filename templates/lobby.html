@@ -9,11 +9,15 @@
 <body >
   <div class="flex flex-col items-center gap-4">
     <div class="font-bold text-center"> modoo calendar </div>
-    <button class="size-12 kbd kbd-lg bg-white ml-5">+</button>
+    <div class="font-mono text-lg"> {{user.username}}님 환영합니다 </div>
   </div>
   <div class="flex flex-col w-screen h-screen items-center justify-center gap-4">
-    <input id="enter_btn" class="btn">
-    <button>들어가기</button>
+    <div class="font-bold text-center"> 그룹코드를 입력해주세요 </div>
+    <div class="flex flex-col gap-2">
+      <input id="enter_btn" class="btn" required >
+      <button onclick="location.href='/schedul'" class="btn btn-info">입장</button>
+      <button onclick="location.href='/create_group'" class="btn btn-accent">방만들기</button>
+    </div>
   </div>
   <script>
   </script>

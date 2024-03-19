@@ -7,20 +7,50 @@
   <title>modoo calendar</title>
 </head>
 <body >
-<div id="wrap" class="flex flex-col">
-  <div id="my_calendar" class="">
+<div id="wrap" class="flex flex-col w-screen h-screen items-center justify-center ">
+  <div id="my_calendar" class="grid grid-cols-7 bg-white mb-5">
     <!-- 자기 시간표 -->
+    <div class="cell_nomal"></div>
+    <div class="cell_nomal cell_select"></div>
+    <div class="cell_nomal cell_select"></div>
+    <div class="cell_nomal cell_select"></div>
+    <div class="cell_nomal cell_select"></div>
+    <div class="cell_nomal"></div>
+    <div class="cell_nomal"></div>
+    <div class="cell_nomal"></div>
+    <div class="cell_nomal"></div>
+    <div class="cell_nomal"></div>
+    <div class="cell_nomal"></div>
+    <div class="cell_nomal"></div>
+    <div class="cell_nomal cell_select"></div>
+    <div class="cell_nomal cell_select"></div>
     
   </div>
-  <button> 작성 </button>
-  <div id="our_calendar">
-    <!-- 공유 시간표 -->
+  <button class="btn btn-primary px-4 mb-10"> 작성 </button>
+  <div class="w-[100px] h-4 bg-gradient-to-r from-sky-500/[0] to-sky-500/[1] "></div>
+  <div class="relative -mt-4 w-[100px] h-4 bg-white -z-20"></div>
+  <div id="our_calendar" class="grid grid-cols-7 bg-white my-5">
     
+    <!-- 공유 시간표 -->
+    <div class="cell_nomal bg-sky-500/[0]"></div>
+    <div class="cell_nomal bg-sky-500/[0.1]"></div>
+    <div class="cell_nomal bg-sky-500/[0.7]"></div>
+    <div class="cell_nomal bg-sky-500/[0.2]"></div>
+    <div class="cell_nomal bg-sky-500/[0.3]"></div>
+    <div class="cell_nomal bg-sky-500/[0.9]"></div>
+    <div class="cell_nomal bg-sky-500/[0.2]"></div>
+    <div class="cell_nomal bg-sky-500/[0.1]"></div>
+    <div class="cell_nomal bg-sky-500/[1]"></div>
+    <div class="cell_nomal bg-sky-500/[1]"></div>
+    <div class="cell_nomal bg-sky-500/[0]"></div>
+    <div class="cell_nomal bg-sky-500/[0.5]"></div>
+    <div class="cell_nomal bg-sky-500/[1]"></div>
+    <div class="cell_nomal bg-sky-500/[1]"></div>
   </div>
 </div>
 
   <script>
-
+    console.log(group)
   </script>
 </body>
 </html>
