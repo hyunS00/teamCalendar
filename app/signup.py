@@ -10,11 +10,11 @@ def signup_post():
     id = request.form['id']
     password = request.form['password']
     if db.users.find_one({'id': id}):
-        return "이미 존재하는 사용자입니다. 다른 아이디 선택해주세요."
+        print("이미 존재하는 사용자입니다. 다른 아이디 선택해주세요.")
     else:
         db.users.insert_one({'username': username, 'password': password})
-        return redirect(url_for('login'))
-
+        return render_template("lobby.html")
+    
 signup_routes = {
     'signup': signup,
     'signup_post': signup_post
