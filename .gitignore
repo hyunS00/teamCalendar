@@ -6,3 +6,4 @@ tailwind.config.js
 test.py
 node_modules
 __pycache__
+time.html

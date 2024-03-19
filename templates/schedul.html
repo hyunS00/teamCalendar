@@ -9,45 +9,107 @@
   <body>
     <div
       id="wrap"
-      class="flex flex-col w-screen h-screen items-center justify-center"
-    >
-      <div class="font-mono text-lg">{{title}}</div>
-      <div id="my_calendar" class="grid grid-cols-7 bg-white mb-5">
-        <div class="cell_nomal">월</div>
-        <div class="cell_nomal">화</div>
-        <div class="cell_nomal">수</div>
-        <div class="cell_nomal">목</div>
-        <div class="cell_nomal">금</div>
-        <div class="cell_nomal">토</div>
-        <div class="cell_nomal">일</div>
-        {% for row in myschedule %} {% for cell in row%} {% if cell == '0' %}
-        <div id="cell" class="cell_nomal" data-active="0"></div>
-        {% else %}
-        <div id="cell" class="cell_nomal cell_select" data-active="1"></div>
-        {% endif %} {% endfor %} {% endfor %}
+      class="flex flex-col gap-2 w-screen h-screen items-center md:justify-center  md:flex-row pt-[100px] md:pt-0"
+      >
+      
+      <div class="md:fixed font-mono text-5xl -mt-[40px] md:-mt-[900px]">--{{title}}</div>
+        <!-- 시간 -->
+        <div class="flex flex-col items-center md:mr-10">
+          <div class="font-mono text-lg">내 시간표</div>
+          <!-- 요일 -->
+          <div class="flex flex-row gap-3">
+            <div class="flex flex-col mt-[25px]">
+              <div class="time">00:00</div>
+              <div class="time">01:00</div>
+              <div class="time">02:00</div>
+              <div class="time">03:00</div>
+              <div class="time">04:00</div>
+              <div class="time">05:00</div>
+              <div class="time">06:00</div>
+              <div class="time">07:00</div>
+              <div class="time">08:00</div>
+              <div class="time">09:00</div>
+              <div class="time">10:00</div>
+              <div class="time">11:00</div>
+              <div class="time">12:00</div>
+              <div class="time">13:00</div>
+              <div class="time">14:00</div>
+              <div class="time">15:00</div>
+              <div class="time">16:00</div>
+              <div class="time">17:00</div>
+              <div class="time">18:00</div>
+              <div class="time">19:00</div>
+              <div class="time">20:00</div>
+              <div class="time">21:00</div>
+              <div class="time">22:00</div>
+              <div class="time">23:00</div>
+              <div class="time">24:00</div>
+          </div>
+          <div id="my_calendar" class="grid grid-cols-7 bg-white mb-5">
+            <div class="week">월</div>
+            <div class="week">화</div>
+            <div class="week">수</div>
+            <div class="week">목</div>
+            <div class="week">금</div>
+            <div class="week">토</div>
+            <div class="week">일</div>
+            {% for row in myschedule %} {% for cell in row%} {% if cell == '0' %}
+            <div id="cell" class="cell_nomal" data-active="0"></div>
+            {% else %}
+            <div id="cell" class="cell_nomal cell_select" data-active="1"></div>
+            {% endif %} {% endfor %} {% endfor %}
+          </div>
+        </div>
+        <button id="submit" class="btn btn-primary px-4 mb-10 w-1/2">작성</button>
       </div>
-      <button id="submit" class="btn btn-primary px-4 mb-10">작성</button>
-      <div
-        class="w-[100px] h-4 bg-gradient-to-r from-sky-500/[0] to-sky-500/[1]"
-      ></div>
-      <div class="relative -mt-4 w-[100px] h-4 bg-white -z-20"></div>
-      <div id="our_calendar" class="grid grid-cols-7 bg-white my-5">
-        <!-- 공유 시간표 -->
-        <div class="cell_nomal bg-sky-500/[0]"></div>
-        <div class="cell_nomal bg-sky-500/[0.1]"></div>
-        <div class="cell_nomal bg-sky-500/[0.7]"></div>
-        <div class="cell_nomal bg-sky-500/[0.2]"></div>
-        <div class="cell_nomal bg-sky-500/[0.3]"></div>
-        <div class="cell_nomal bg-sky-500/[0.9]"></div>
-        <div class="cell_nomal bg-sky-500/[0.2]"></div>
-        <div class="cell_nomal bg-sky-500/[0.1]"></div>
-        <div class="cell_nomal bg-sky-500/[1]"></div>
-        <div class="cell_nomal bg-sky-500/[1]"></div>
-        <div class="cell_nomal bg-sky-500/[0]"></div>
-        <div class="cell_nomal bg-sky-500/[0.5]"></div>
-        <div class="cell_nomal bg-sky-500/[1]"></div>
-        <div class="cell_nomal bg-sky-500/[1]"></div>
+      <div class="flex flex-col items-center md:mr-10">
+        <div class="font-mono text-lg">공유시간표</div>
+        <!-- 요일 -->
+        <div class="flex flex-row gap-3">
+          <div class="flex flex-col mt-[25px]">
+            <div class="time">00:00</div>
+            <div class="time">01:00</div>
+            <div class="time">02:00</div>
+            <div class="time">03:00</div>
+            <div class="time">04:00</div>
+            <div class="time">05:00</div>
+            <div class="time">06:00</div>
+            <div class="time">07:00</div>
+            <div class="time">08:00</div>
+            <div class="time">09:00</div>
+            <div class="time">10:00</div>
+            <div class="time">11:00</div>
+            <div class="time">12:00</div>
+            <div class="time">13:00</div>
+            <div class="time">14:00</div>
+            <div class="time">15:00</div>
+            <div class="time">16:00</div>
+            <div class="time">17:00</div>
+            <div class="time">18:00</div>
+            <div class="time">19:00</div>
+            <div class="time">20:00</div>
+            <div class="time">21:00</div>
+            <div class="time">22:00</div>
+            <div class="time">23:00</div>
+            <div class="time">24:00</div>
+        </div>
+        <div id="my_calendar" class="grid grid-cols-7 bg-white mb-5">
+          <div class="week">월</div>
+          <div class="week">화</div>
+          <div class="week">수</div>
+          <div class="week">목</div>
+          <div class="week">금</div>
+          <div class="week">토</div>
+          <div class="week">일</div>
+          {% for row in myschedule %} {% for cell in row%} {% if cell == '0' %}
+          <div id="cell" class="cell_nomal" data-active="0"></div>
+          {% else %}
+          <div id="cell" class="cell_nomal cell_select" data-active="1"></div>
+          {% endif %} {% endfor %} {% endfor %}
+        </div>
       </div>
+      <button id="submit" class="btn btn-accent px-4 mb-10 w-1/2">불러오기</button>
+    </div>
     </div>
 
     <script>
@@ -56,7 +118,6 @@
       function clcikCell(e) {
         const target = e.target;
         const targetData = target.dataset;
-
         if (targetData.active === "0") {
           targetData.active = "1";
           target.className = "cell_nomal cell_select";
