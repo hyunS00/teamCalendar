@@ -22,4 +22,4 @@ app.add_url_rule('/schedule','schedul',scedul_routes['schedul'],methods=["GET"])
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=4000)
+    app.run('0.0.0.0',debug=True, port=4000)
