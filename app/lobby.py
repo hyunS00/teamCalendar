@@ -3,7 +3,7 @@ from app import authConstant
 from app.checkLogin import is_member
 
 @is_member
-def lobby(username):   
+def lobby(username, userId):   
     return render_template("lobby.html", username=username)
     
 lobby_routes = {
