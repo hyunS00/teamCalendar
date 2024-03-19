@@ -2,7 +2,7 @@ from datetime import timedelta, datetime
 from flask_jwt_extended import create_access_token
 
 def provide(userId, userName):
-    expiredTime = datetime.today() + timedelta(minutes=60 * 60 * 24)
+    expiredTime = datetime.today() + timedelta(days=1)
     payload = {
         'username' : userName,
         'exp': expiredTime
