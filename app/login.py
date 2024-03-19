@@ -9,7 +9,7 @@ from app import tokenProvider
 
 def login():
     # todo : 로그인 페이지로 변경하기
-    return render_template('index.html')
+    return render_template('login.html')
 
 def login_post():
     userId = request.form['userId']
