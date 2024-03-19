@@ -9,14 +9,16 @@
 <body >
   <div class="flex flex-col items-center gap-4">
     <div class="font-bold text-center"> modoo calendar </div>
-    <div class="font-mono text-lg"> {{user.username}}님 환영합니다 </div>
   </div>
   <div class="flex flex-col w-screen h-screen items-center justify-center gap-4">
     <div class="font-bold text-center"> 그룹정보를 입력해주세요 </div>
-    <div class="flex flex-col gap-2">
-      <input id="enter_btn" class="btn" required >
+    <form action="/api/group" method="POST"
+    class="*:text-left flex flex-col gap-2 bg-white shadow-md rounded-xl p-5">
+      <input name="title" type="text" class="btn" placeholder="방이름" required >
+      <input name="date" type="date" class="btn w-full" placeholder="" required >
       <button class="btn btn-accent">방만들기</button>
-    </div>
+    </form>
+    <a href="/lobby" class="text-white text-sm text-center -mt-2">로비로 나가기</a>
   </div>
   <script>
   </script>
