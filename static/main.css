@@ -1551,6 +1551,42 @@ html {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
 
+.bg-sky-500\/\[\.6\] {
+  background-color: rgb(14 165 233 / .6);
+}
+
+.bg-sky-500\/\[\] {
+  background-color: rgb(14 165 233 / );
+}
+
+.bg-sky-500\/\[\.9\] {
+  background-color: rgb(14 165 233 / .9);
+}
+
+.bg-sky-500\/\[0\.0\] {
+  background-color: rgb(14 165 233 / 0.0);
+}
+
+.bg-sky-500\/\[0\.4\] {
+  background-color: rgb(14 165 233 / 0.4);
+}
+
+.bg-sky-500\/\[0\.6\] {
+  background-color: rgb(14 165 233 / 0.6);
+}
+
+.bg-sky-500\/\[0\.8\] {
+  background-color: rgb(14 165 233 / 0.8);
+}
+
+.bg-sky-500\/\[1\.1\] {
+  background-color: rgb(14 165 233 / 1.1);
+}
+
+.bg-sky-500\/\[1\.0\] {
+  background-color: rgb(14 165 233 / 1.0);
+}
+
 .p-5 {
   padding: 1.25rem;
 }
