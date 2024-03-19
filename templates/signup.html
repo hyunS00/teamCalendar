@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html  data-theme="dim" lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{url_for('static', filename='/main.css')}}">
+  <title>modoo calendar</title>
+</head>
+<body>
+  <div class="flex flex-col w-screen h-screen items-center justify-center">
+    <div class="font-bold text-center"> modoo calendar </div>
+    <div class="bg-white p-5 rounded-2xl shadow-md">
+      <form class="flex flex-col gap-5 justify-center " action="" method="GET">
+        <input required placeholder="아이디" name="userId" class="input" type="text">
+        <input required placeholder="이름" name="username" class="input" type="text">
+        <input required placeholder="비밀번호" name="password" class="input" type="password">
+        <button class="btn btn-primary px-10 w-full">가입</button>
+        <div class="w-full h-0.5 bg-slate-500 rounded-full"></div>
+        <a href="/" class="text-black text-sm text-center -mt-2">아이디가 이미 있으신가요?</a>
+      </form>
+    </div>
+  </div>
+</body>
+</html>
