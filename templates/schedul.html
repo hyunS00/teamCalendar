@@ -21,12 +21,12 @@
         <div class="cell_nomal">토</div>
         <div class="cell_nomal">일</div>
         {% for row in myschedule %} {% for cell in row%} {% if cell == '0' %}
-        <div class="cell_nomal" data-active="0"></div>
+        <div id="cell" class="cell_nomal" data-active="0"></div>
         {% else %}
-        <div class="cell_nomal cell_select" data-active="1"></div>
+        <div id="cell" class="cell_nomal cell_select" data-active="1"></div>
         {% endif %} {% endfor %} {% endfor %}
       </div>
-      <button class="btn btn-primary px-4 mb-10">작성</button>
+      <button id="submit" class="btn btn-primary px-4 mb-10">작성</button>
       <div
         class="w-[100px] h-4 bg-gradient-to-r from-sky-500/[0] to-sky-500/[1]"
       ></div>
@@ -50,6 +50,40 @@
       </div>
     </div>
 
-    <script></script>
+    <script>
+      const $myCal = document.getElementById("my_calendar");
+      const $cells = document.querySelectorAll("#cell");
+      function clcikCell(e) {
+        const target = e.target;
+        const targetData = target.dataset;
+
+        if (targetData.active === "0") {
+          targetData.active = "1";
+          target.className = "cell_nomal cell_select";
+        } else {
+          targetData.active = "0";
+          target.className = "cell_nomal";
+        }
+      }
+      function clickSubmit(e) {
+        const codeArr = [];
+        for (let row = 0; row < 175; row += 7) {
+          let activeCode = "";
+          for (let cell = row; cell < row + 7; cell++) {
+            activeCode += $cells[cell].dataset.active;
+          }
+          codeArr.push(parseInt(activeCode, 2));
+        }
+        const code = codeArr.toString();
+        console.log(code);
+      }
+
+      const $submitBtn = document.getElementById("submit");
+      $submitBtn.addEventListener("click", clickSubmit);
+
+      $cells.forEach(($cell) => {
+        $cell.addEventListener("click", clcikCell);
+      });
+    </script>
   </body>
 </html>
