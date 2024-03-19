@@ -10,11 +10,9 @@ def group(username):
 def create_group():
     title_receive = request.form['title']
     start_date_receive = request.form['date']
-    password_recive = request.form['password']
-    userId_receive = request.form['userid']
 
     group_data = {
-        'title' : title_receive, 'date' : start_date_receive, 'password' : password_recive, 'user' : userId_receive
+        'title' : title_receive, 'date' : start_date_receive
     }
 
     db.group.insert_one(group_data)
