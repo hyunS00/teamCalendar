@@ -4,6 +4,8 @@ from passlib.hash import pbkdf2_sha256
 from datetime import timedelta, datetime
 from flask_jwt_extended import create_access_token
 from app import authConstant
+from app import tokenProvider
+
 
 def login():
     # todo : 로그인 페이지로 변경하기
@@ -22,15 +24,12 @@ def login_post():
         print("비밀번호가 일치하지 않습니다.")
     
     else:
-        expiredTime = datetime.today() + timedelta(minutes=60 * 60 * 24)
-        payload = {
-         'id': userId,
-         'username' : user["username"],
-         'exp': expiredTime
-        }
-        
-        # 토큰을 발급한다.
-        token = access_token = create_access_token(identity=userId)
+        # userId와 userName을 가져옵니다.
+        userId = user.get('userId')
+        userName = user.get('username')
+    
+        # 토큰을 발급받습니다.
+        token, expiredTime = tokenProvider.provide(userId, userName)
         
         # 토큰을 쿠키에 발급한다.
         response = make_response(redirect(url_for('lobby.html'))) 
