@@ -1,1 +1,8 @@
 .venv
+input.css
+package-lock.json
+package.json
+tailwind.config.js
+test.py
+node_modules
+__pycache__
