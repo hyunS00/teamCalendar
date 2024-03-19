@@ -19,7 +19,7 @@ def signup_post():
         token, expiredTime = tokenProvider.provide(userId, username)
         
         # 토큰을 쿠키에 발급한다.
-        response = make_response(redirect(url_for('lobby.html', username=username))) 
+        response = make_response(redirect(url_for('lobby', username=username))) 
         response.set_cookie(authConstant.COOKIE_TOKEN_KEY, token, expires=expiredTime) 
         return response
     
