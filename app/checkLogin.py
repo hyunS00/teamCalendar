@@ -13,7 +13,7 @@ def is_member(f):
         try:
             username = decode_token(token)["username"]
             # 토큰이 유효한 경우 함수 호출
-            return f(*args, **kwargs)
+            return f(username, *args, **kwargs)
         except ExpiredSignatureError:
             # 토큰이 만료된 경우 로그인 페이지로 리다이렉트
             return render_template("login.html")
