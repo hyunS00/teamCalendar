@@ -7,9 +7,9 @@ def signup():
 
 def signup_post():
     username = request.form['username']
-    id = request.form['id']
+    userId = request.form['userId']
     password = request.form['password']
-    if db.users.find_one({'id': id}):
+    if db.users.find_one({'userId': userId}):
         print("이미 존재하는 사용자입니다. 다른 아이디 선택해주세요.")
     else:
         db.users.insert_one({'username': username, 'password': password})
