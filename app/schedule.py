@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for
 from app.db import db
+from app.checkLogin import is_member
 
 def convert_binary(code):
     split_list = code.split(',')
@@ -18,24 +19,27 @@ def get_cnt_list(code_list):
         for row in range(25):
             for cell in range(7):
                 cnt[row][cell] += int(bin_list[row][cell])
+    length = len(code_list)
+    for row in range(25):
+        for cell in range(7):
+            cnt[row][cell] = round(cnt[row][cell]/length,1)
     return cnt
+
 
 def schedule():
     myschedule = "0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0"
     bin_list = convert_binary(myschedule)
     
-    schedule = ["1,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
-                "1,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
-                "1,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
-                "1,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0"]
+    schedule = ["0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
+                "1,1,2,3,3,5,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
+                "1,0,2,3,4,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,65,0,0,0",
+                "1,1,2,3,4,5,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,65,0,0,0"]
     
     cnt_list = get_cnt_list(schedule)
-   
-    print(cnt_list)
 
     return render_template('schedul.html',myschedule=bin_list,all_schedule=cnt_list)
 
-def schedule_post():
+def schedule_post(username, userUUID):
     myschedule = "0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0"
 
     split_list = myschedule.split(',')
