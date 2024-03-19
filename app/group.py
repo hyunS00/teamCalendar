@@ -1,9 +1,12 @@
 from flask import render_template, request, redirect, url_for,jsonify
 from app.db import db
+from app.checkLogin import is_member
 
+@is_member
 def group():
     return render_template('group.html')
 
+@is_member
 def create_group():
     title_receive = request.form['title']
     start_date_receive = request.form['date']
@@ -16,7 +19,7 @@ def create_group():
 
     db.group.insert_one(group_data)
 
-    return jsonify({'result': 'success', 'msg': '저장되었습니다'})
+    return render_template("schedul.html", title=title_receive)
 
 group_routes = {
     'group': group,
