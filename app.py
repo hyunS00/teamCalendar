@@ -1,11 +1,12 @@
-# app.py
 from flask import Flask
 from app.signup import signup_routes
 from app.group import group_routes
 from app.lobby import lobby_routes
 from app.login import login_routes
 
-app = Flask(__name__)
+from flask_jwt_extended import JWTManager
+from app.config import app
+
 
 # 라우트 등록
 app.add_url_rule('/signup', 'signup', signup_routes['signup'] , methods=['GET'])
@@ -19,4 +20,4 @@ app.add_url_rule('/create_group','create_group',group_routes['create_group'],met
 app.add_url_rule('/lobby','lobby',lobby_routes['lobby'],methods=['GET'])
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run('0.0.0.0', debug=True, port=5000)
