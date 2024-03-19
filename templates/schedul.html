@@ -101,17 +101,26 @@
           <div class="week">금</div>
           <div class="week">토</div>
           <div class="week">일</div>
-          {% for row in myschedule %} {% for cell in row%} {% if cell == '0' %}
-          <div id="cell" class="cell_nomal" data-active="0"></div>
-          {% else %}
-          <div id="cell" class="cell_nomal cell_select" data-active="1"></div>
-          {% endif %} {% endfor %} {% endfor %}
+          {% for row in all_schedule %} {% for cell in row%} 
+          <div id="cell" class="cell_nomal bg-sky-500/[{{cell}}]" data-active="0"></div>
+          {% endfor %} {% endfor %}
         </div>
       </div>
       <button id="submit" class="btn btn-accent px-4 mb-10 w-1/2">불러오기</button>
     </div>
     </div>
-
+    <div class="bg-sky-500/[0.0]">
+      <div class="bg-sky-500/[0.1]"/>
+      <div class="bg-sky-500/[0.2]"/>
+      <div class="bg-sky-500/[0.3]"/>
+      <div class="bg-sky-500/[0.4]"/>
+      <div class="bg-sky-500/[0.5]"/>
+      <div class="bg-sky-500/[0.6]"/>
+      <div class="bg-sky-500/[0.7]"/>
+      <div class="bg-sky-500/[0.8]"/>
+      <div class="bg-sky-500/[0.9]"/>
+      <div class="bg-sky-500/[1.0]"/>
+    </div>
     <script>
       const $myCal = document.getElementById("my_calendar");
       const $cells = document.querySelectorAll("#cell");
