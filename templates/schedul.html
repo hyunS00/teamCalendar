@@ -1,57 +1,55 @@
 <!DOCTYPE html>
-<html  data-theme="dim" lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{{url_for('static', filename='/main.css')}}">
-  <title>modoo calendar</title>
-</head>
-<body >
-<div id="wrap" class="flex flex-col w-screen h-screen items-center justify-center ">
-  <div id="my_calendar" class="grid grid-cols-7 bg-white mb-5">
-    <div class="font-mono text-lg"> {{title}} </div>
-    <!-- 자기 시간표 -->
-    <div class="cell_nomal"></div>
-    <div class="cell_nomal cell_select"></div>
-    <div class="cell_nomal cell_select"></div>
-    <div class="cell_nomal cell_select"></div>
-    <div class="cell_nomal cell_select"></div>
-    <div class="cell_nomal"></div>
-    <div class="cell_nomal"></div>
-    <div class="cell_nomal"></div>
-    <div class="cell_nomal"></div>
-    <div class="cell_nomal"></div>
-    <div class="cell_nomal"></div>
-    <div class="cell_nomal"></div>
-    <div class="cell_nomal cell_select"></div>
-    <div class="cell_nomal cell_select"></div>
-    
-  </div>
-  <button class="btn btn-primary px-4 mb-10"> 작성 </button>
-  <div class="w-[100px] h-4 bg-gradient-to-r from-sky-500/[0] to-sky-500/[1] "></div>
-  <div class="relative -mt-4 w-[100px] h-4 bg-white -z-20"></div>
-  <div id="our_calendar" class="grid grid-cols-7 bg-white my-5">
-    
-    <!-- 공유 시간표 -->
-    <div class="cell_nomal bg-sky-500/[0]"></div>
-    <div class="cell_nomal bg-sky-500/[0.1]"></div>
-    <div class="cell_nomal bg-sky-500/[0.7]"></div>
-    <div class="cell_nomal bg-sky-500/[0.2]"></div>
-    <div class="cell_nomal bg-sky-500/[0.3]"></div>
-    <div class="cell_nomal bg-sky-500/[0.9]"></div>
-    <div class="cell_nomal bg-sky-500/[0.2]"></div>
-    <div class="cell_nomal bg-sky-500/[0.1]"></div>
-    <div class="cell_nomal bg-sky-500/[1]"></div>
-    <div class="cell_nomal bg-sky-500/[1]"></div>
-    <div class="cell_nomal bg-sky-500/[0]"></div>
-    <div class="cell_nomal bg-sky-500/[0.5]"></div>
-    <div class="cell_nomal bg-sky-500/[1]"></div>
-    <div class="cell_nomal bg-sky-500/[1]"></div>
-  </div>
-</div>
+<html data-theme="dim" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{{url_for('static', filename='/main.css')}}" />
+    <title>modoo calendar</title>
+  </head>
+  <body>
+    <div
+      id="wrap"
+      class="flex flex-col w-screen h-screen items-center justify-center"
+    >
+      <div class="font-mono text-lg">{{title}}</div>
+      <div id="my_calendar" class="grid grid-cols-7 bg-white mb-5">
+        <div class="cell_nomal">월</div>
+        <div class="cell_nomal">화</div>
+        <div class="cell_nomal">수</div>
+        <div class="cell_nomal">목</div>
+        <div class="cell_nomal">금</div>
+        <div class="cell_nomal">토</div>
+        <div class="cell_nomal">일</div>
+        {% for row in myschedule %} {% for cell in row%} {% if cell == '0' %}
+        <div class="cell_nomal" data-active="0"></div>
+        {% else %}
+        <div class="cell_nomal cell_select" data-active="1"></div>
+        {% endif %} {% endfor %} {% endfor %}
+      </div>
+      <button class="btn btn-primary px-4 mb-10">작성</button>
+      <div
+        class="w-[100px] h-4 bg-gradient-to-r from-sky-500/[0] to-sky-500/[1]"
+      ></div>
+      <div class="relative -mt-4 w-[100px] h-4 bg-white -z-20"></div>
+      <div id="our_calendar" class="grid grid-cols-7 bg-white my-5">
+        <!-- 공유 시간표 -->
+        <div class="cell_nomal bg-sky-500/[0]"></div>
+        <div class="cell_nomal bg-sky-500/[0.1]"></div>
+        <div class="cell_nomal bg-sky-500/[0.7]"></div>
+        <div class="cell_nomal bg-sky-500/[0.2]"></div>
+        <div class="cell_nomal bg-sky-500/[0.3]"></div>
+        <div class="cell_nomal bg-sky-500/[0.9]"></div>
+        <div class="cell_nomal bg-sky-500/[0.2]"></div>
+        <div class="cell_nomal bg-sky-500/[0.1]"></div>
+        <div class="cell_nomal bg-sky-500/[1]"></div>
+        <div class="cell_nomal bg-sky-500/[1]"></div>
+        <div class="cell_nomal bg-sky-500/[0]"></div>
+        <div class="cell_nomal bg-sky-500/[0.5]"></div>
+        <div class="cell_nomal bg-sky-500/[1]"></div>
+        <div class="cell_nomal bg-sky-500/[1]"></div>
+      </div>
+    </div>
 
-  <script>
-    
-  </script>
-</body>
+    <script></script>
+  </body>
 </html>
