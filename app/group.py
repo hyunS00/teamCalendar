@@ -3,8 +3,8 @@ from app.db import db
 from app.checkLogin import is_member
 
 @is_member
-def group():
-    return render_template('group.html')
+def group(username):
+    return render_template('group.html', username=username)
 
 @is_member
 def create_group():
