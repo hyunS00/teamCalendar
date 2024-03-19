@@ -3,16 +3,12 @@ from app.db import db
 
 def convert_binary(code):
     split_list = code.split(',')
-
-def schedule():
-    myschedule = "0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0"
-
-    split_list = myschedule.split(',')
     bin_list = []
     for row in split_list:
         bin_list.append(format(int(row),'b').zfill(7))
 
     return bin_list
+
 
 def get_cnt_list(code_list):
     cnt = [[0 for w in range(7)] for h in range(25)]
@@ -24,11 +20,10 @@ def get_cnt_list(code_list):
                 cnt[row][cell] += int(bin_list[row][cell])
     return cnt
 
-def schedul():
+def schedule():
     myschedule = "0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0"
     bin_list = convert_binary(myschedule)
     
-
     schedule = ["1,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
                 "1,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
                 "1,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
