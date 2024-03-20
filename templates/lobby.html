@@ -25,7 +25,7 @@
       const groupCode = document.getElementById('groupCode')
       let input = groupCode.value
       try{
-        const responce = await fetch('/find_group', {
+        const response = await fetch('/find_group', {
           method: 'POST',
           headers:{
             "Content-Type": "application/json",
@@ -34,7 +34,7 @@
             group_code: input
           })
         });
-          const result = responce.json()
+          const result = response.json()
           if (result?.status == '404'){
             alert(result.msg)
           }
