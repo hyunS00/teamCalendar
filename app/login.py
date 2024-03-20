@@ -32,9 +32,9 @@ def login_post():
     if(pbkdf2_sha256.verify(password, hashedPassword)):
         userId = user.get('userId')
         userName = user.get('username')
-    
+        userUUID = str(user['_id'])
         # 토큰 발급
-        token, expiredTime = tokenProvider.provide(userId, userName)
+        token, expiredTime = tokenProvider.provide(userUUID, userName)
         
         # 쿠키에 토큰 담기
         response = success()

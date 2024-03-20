@@ -29,7 +29,7 @@ def get_cal_date(date):
 def get_cnt_list(code_list):
     cnt = [[0 for w in range(7)] for h in range(25)]
     active_user = [[[] for w in range(7)] for h in range(25)]
-
+    print(code_list[0])
     for code in code_list:
         bin_list = convert_binary(code['active_code'])
         user_name = db.users.find_one({'_id': ObjectId(code['userUUID'])})['username']
