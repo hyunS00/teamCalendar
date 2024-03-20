@@ -33,4 +33,4 @@ app.add_url_rule('/schedule_post/<group_code>','schedule_post',schedule_routes['
 app.add_url_rule('/error','error',error_routes['error'],methods=["GET"])
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', debug=True, port=3000)
+    app.run('0.0.0.0', debug=True, port=5000)
