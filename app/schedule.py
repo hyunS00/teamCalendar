@@ -15,7 +15,7 @@ def get_cnt_list(code_list):
     cnt = [[0 for w in range(7)] for h in range(25)]
 
     for code in code_list:
-        bin_list = convert_binary(code)
+        bin_list = convert_binary(code['active_code'])
         for row in range(25):
             for cell in range(7):
                 cnt[row][cell] += int(bin_list[row][cell])
@@ -32,19 +32,15 @@ def schedule(username, userUUID,group_code):
         schedule = db.schedule.find_one({'userUUID':userUUID,'group_uuid':group_code})
         if(schedule is None):
             init_code = "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0"
-            schedule = db.schedule.insert_one({
+            result = db.schedule.insert_one({
                 'userUUID':userUUID,'group_uuid':group_code,'active_code':init_code
             })
+            schedule = db.schedule.find_one({'_id': result.inserted_id})
         active_code = schedule["active_code"]
-        print('액티브',active_code)
         bin_list = convert_binary(active_code)
         
-        schedule = ["0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
-                    "1,1,2,3,3,5,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
-                    "1,0,2,3,4,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,65,0,0,0",
-                    "1,1,2,3,4,5,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,65,0,0,0"]
-        
-        cnt_list = get_cnt_list(schedule)
+        schedule_list = list(db.schedule.find({'group_uuid':group_code}))
+        cnt_list = get_cnt_list(schedule_list)
 
         return render_template('schedul.html',myschedule=bin_list,all_schedule=cnt_list,groupId=group_code,title=data['title'],username=username)
     return
@@ -55,13 +51,7 @@ def schedule(username, userUUID,group_code):
 def schedule_post(username, userUUID,group_code):
     myschedule = "0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0"
     active_code = request.json['my_schedule']
-    # split_list = active_code.split(',')
 
-    # print(split_list)
-    # bin_list = []
-    # for row in split_list:
-    #     bin_list.append(format(int(row),'b').zfill(7))
-    # print(bin_list)
     data = db.schedule.find_one({'userUUID':userUUID,'group_uuid':group_code})
     if(data):
         db.schedule.update_one(data,{"$set":{"active_code":active_code}})
