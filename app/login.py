@@ -25,6 +25,9 @@ def login_post():
         return not_found_error(NOT_FOUND_USER)
     
     hashedPassword=user["password"]
+    print(user["password"])
+    print(hashedPassword)
+    print(password)
     if(pbkdf2_sha256.verify(password, hashedPassword)):
         return not_found_error(NOT_FOUND_USER)
     
