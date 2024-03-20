@@ -36,11 +36,14 @@
           body: JSON.stringify(form)
         })
         const result = await response.json();
+        if(response.ok){
+          window.location.href = '/lobby'
+        }
         if (result?.status == '404'){
           alert(result.msg)
         }
       } catch (error) {
-        window.location.href = '/error.html'
+        window.location.href = '/error'
       }
     })
   </script>
