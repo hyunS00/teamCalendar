@@ -163,6 +163,9 @@
             },
             body: JSON.stringify({my_schedule : code})
           })
+          .then(sucess=>{
+            window.location.href = `/schedul/${g_code}`
+          })
         } catch (error) {
           console.log(error)
         }

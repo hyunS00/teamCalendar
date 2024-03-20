@@ -31,7 +31,7 @@
           body: formData,
         })
         const result = await responce.json();
-        if (result.msg){
+        if (result?.status == '404'){
           alert(result.msg)
         }
       } catch (error) {
