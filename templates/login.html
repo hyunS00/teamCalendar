@@ -25,16 +25,15 @@
       const userId = document.getElementById('userId').value;
       const password = document.getElementById('password').value;
       const form = {"userId" : userId, "userword" : password};
-      console.log(formData)
       try {
-        const responce = await fetch('/login_post', {
+        const response = await fetch('/login', {
           method: 'POST',
           headers:{
               "Content-Type": "application/json",
             },
           body: JSON.stringify(form)
         })
-        const result = await responce.json();
+        const result = await response.json();
         if (result?.status == '404'){
           alert(result.msg)
         }

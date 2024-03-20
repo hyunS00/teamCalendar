@@ -28,14 +28,14 @@
       const password = document.getElementById('password').value;
       form = {'userId' : userId ,'username': username,'password':password};
       try {
-        const responce = await fetch('/signup_post', {
+        const response = await fetch('/signup', {
           method: 'POST',
           headers:{
               "Content-Type": "application/json",
             },
           body: JSON.stringify(form)
         })
-        const result = await responce.json();
+        const result = await response.json();
         if (result?.status == '404'){
           alert(result.msg)
         }
