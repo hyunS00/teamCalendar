@@ -17,10 +17,3 @@ def success_with_data(code):
     response.headers['Content-Type'] = 'application/json'
     
     return response
-
-def success_with_data(code):
-    SUCCESS_STATUS_CODE = 200
-    response = make_response(jsonify({"status": SUCCESS_STATUS_CODE, "code": code}))
-    response.status_code = SUCCESS_STATUS_CODE
-    response.headers['Content-Type'] = 'application/json'
-    return response
