@@ -19,6 +19,8 @@ def login_post():
 
     userId = data.get("userId")
     password= data.get("password")
+    print("패스워드")
+    print(password)
     
     user = db.users.find_one({'userId': userId})
     if user is None:
