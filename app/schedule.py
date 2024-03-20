@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, make_response
 from app.db import db
 from app.checkLogin import is_member
 
@@ -25,32 +25,40 @@ def get_cnt_list(code_list):
             cnt[row][cell] = round(cnt[row][cell]/length,1)
     return cnt
 
+@is_member
+def schedule(username, userUUID,id):
+    data =db.groups.find_one({"group_uuid":id})
+    if(data):
+        myschedule = "0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0"
+        bin_list = convert_binary(myschedule)
+        
+        schedule = ["0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
+                    "1,1,2,3,3,5,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
+                    "1,0,2,3,4,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,65,0,0,0",
+                    "1,1,2,3,4,5,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,65,0,0,0"]
+        
+        cnt_list = get_cnt_list(schedule)
 
-def schedule():
-    myschedule = "0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0"
-    bin_list = convert_binary(myschedule)
-    
-    schedule = ["0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
-                "1,1,2,3,3,5,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
-                "1,0,2,3,4,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,65,0,0,0",
-                "1,1,2,3,4,5,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,65,0,0,0"]
-    
-    cnt_list = get_cnt_list(schedule)
+        return render_template('schedul.html',myschedule=bin_list,all_schedule=cnt_list,groupId=id,title=data['title'],username=username)
+    return
 
-    return render_template('schedul.html',myschedule=bin_list,all_schedule=cnt_list)
+    
 
 @is_member
-def schedule_post(username, userUUID):
+def schedule_post(username, userUUID,id):
     myschedule = "0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0"
-
     split_list = myschedule.split(',')
+
     print(split_list)
     bin_list = []
     for row in split_list:
         bin_list.append(format(int(row),'b').zfill(7))
     print(bin_list)
-    response = make_response(redirect(url_for('lobby', username=username))) 
-    return render_template('schedul.html',myschedule=bin_list)
+    data = db.schedule.find_one({'userUUID':userUUID,'group_uuid':id})
+    if(data):
+        db.schedule.update_one(data,{"$set":{"active":bin_list}})
+    response = make_response(redirect(url_for('schedule/'+id))) 
+    return response
 
 schedule_routes = {
     'schedule': schedule,
