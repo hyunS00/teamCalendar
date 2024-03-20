@@ -7,14 +7,11 @@ from app.schedule import schedule_routes
 from app.error import error_routes
 from app.signout import signout_routes
 from flask_jwt_extended import JWTManager
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
+from app.envManager import get_value
 
 app = Flask(__name__)
 jwt= JWTManager(app)
-secret_key = os.environ.get('SECRET_KEY')
+secret_key = get_value('SECRET_KEY')
 app.config['JWT_SECRET_KEY'] = secret_key
 
 app.add_url_rule('/', 'lobby', lobby_routes['lobby'] , methods=['GET'])
