@@ -3,6 +3,10 @@ from app import db
 from app import authConstant
 from app import tokenProvider
 from passlib.hash import pbkdf2_sha256
+from app.errorResponse import not_found_error
+from typing import Final
+
+DUPLICATED_USER: Final = "이미 존재하는 사용자입니다."
 
 # 회원가입 페이지
 def signup():
@@ -16,7 +20,7 @@ def signup_post():
     hashed_password = pbkdf2_sha256.hash(password)
     
     if db.users.find_one({'userId': userId}):
-        print("이미 존재하는 사용자입니다. 다른 아이디 선택해주세요.")
+        not_found_error(DUPLICATED_USER)
     else:
         result = db.users.insert_one({'userId': userId, 'username': username, 'password': hashed_password})
         
@@ -25,7 +29,7 @@ def signup_post():
         token, expiredTime = tokenProvider.provide(userUUID, username)
         
         # 토큰을 쿠키에 담는다.
-        response = make_response(redirect(url_for('lobby', username=username)))
+        response = make_response(redirect(url_for('lobby', username=username))) 
         response.set_cookie(authConstant.COOKIE_TOKEN_KEY, token, expires=expiredTime) 
         return response
     

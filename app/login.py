@@ -1,9 +1,12 @@
-from flask import (render_template, request, make_response, redirect, url_for)
+from flask import (render_template, request, make_response, redirect, url_for, jsonify)
 from app import db
 from passlib.hash import pbkdf2_sha256
-from datetime import timedelta, datetime
 from app import authConstant
 from app import tokenProvider
+from app.errorResponse import not_found_error
+from typing import Final
+
+NOT_FOUND_USER: Final = "해당하는 사용자가 없습니다."
 
 # 로그인 페이지
 def login():
@@ -16,11 +19,11 @@ def login_post():
     
     user = db.users.find_one({'userId': userId})
     if user is None:
-        print("해당하는 사용자가 없습니다.")
+        not_found_error(NOT_FOUND_USER)
     
     hashedPassword=user["password"]
     if(pbkdf2_sha256.verify(password, hashedPassword)):
-        print("비밀번호가 일치하지 않습니다.")
+        not_found_error(NOT_FOUND_USER)
     
     else:
         userId = user.get('userId')
@@ -30,7 +33,7 @@ def login_post():
         token, expiredTime = tokenProvider.provide(userId, userName)
         
         # 쿠키에 토큰 담기
-        response = make_response(redirect(url_for('lobby.html'))) 
+        response = make_response(redirect(url_for('lobby'))) 
         response.set_cookie(authConstant.COOKIE_TOKEN_KEY, token, expires=expiredTime) 
         return response
             
