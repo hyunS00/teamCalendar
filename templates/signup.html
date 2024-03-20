@@ -23,7 +23,6 @@
     </div>
   </div>
   <script>
-    const signup_btn = document.getElementById('signup_btn');
     signup_btn.addEventListener('click', async () => {
       const userId = document.getElementById('userId').value;
       const username = document.getElementById('username').value;
@@ -36,32 +35,26 @@
             "Content-Type": "application/json",
           },
           body: JSON.stringify(form)
-        })
+        });
 
-        console.log("result")
-        console.log(result)
-        if (!response.ok) {
-          throw new Error()
+        result = await response.json();
+
+        if (response.status == 200) {
+          window.location.href = '/lobby';
         }
 
-        const result = await response.json();
-        console.log("response")
-        console.log(response)
-        alert(response)
-        alert(result)
-        const res = await response
-        console.log(res)
-        window.location.href = '/lobby'
+        else if (response.status == 400) {
+          alert(result.msg);
+        }
 
-        if (await result?.status == '404') {
-          console.log("adfdasfdasfadsf")
-          alert(result.msg)
+        else {
+          window.location.href = '/error';
         }
       } catch (error) {
-        alert(error)
-        window.location.href = '/error'
+        window.location.href = '/error';
       }
-    })
+    });
+
   </script>
 </body>
 

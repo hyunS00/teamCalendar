@@ -4,6 +4,7 @@ from app import authConstant
 from app import tokenProvider
 from passlib.hash import pbkdf2_sha256
 from app.errorResponse import not_found_error
+from app.errorResponse import duplicated_error
 from app.successReponse import success
 from typing import Final
 
@@ -23,7 +24,7 @@ def signup_post():
     hashed_password = pbkdf2_sha256.hash(password)
     
     if db.users.find_one({'userId': userId}):
-        return not_found_error(DUPLICATED_USER)
+        return duplicated_error(DUPLICATED_USER)
     else:
         result = db.users.insert_one({'userId': userId, 'username': username, 'password': hashed_password})
         
@@ -34,8 +35,6 @@ def signup_post():
         # 토큰을 쿠키에 담는다.
         response = success()
         response.set_cookie(authConstant.COOKIE_TOKEN_KEY, token, expires=expiredTime) 
-        print("response 출력")
-        print(response)
         return response
     
 signup_routes = {
