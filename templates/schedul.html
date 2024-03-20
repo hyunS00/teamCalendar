@@ -9,49 +9,61 @@
   <body>
     <div
       id="wrap"
-      class="flex flex-col gap-2 w-screen h-screen items-center md:justify-center  md:flex-row pt-[100px] md:pt-0"
+      class="flex flex-col gap-2 w-screen h-screen items-center md:justify-center md:flex-row pt-[100px] md:pt-0"
+    >
+      <div
+        class="md:fixed -mt-[40px] md:-mt-[900px] flex flex-col items-center"
       >
-      
-      <div class="md:fixed -mt-[40px] md:-mt-[900px] flex flex-col items-center">
         <span class="font-mono text-5xl">{{title}}</span>
-        <div id="code" class="flex flex-row gap-2" style="cursor: pointer">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z" />
-          </svg>        
-          <span>{{groupId}}</span>
+        <div class="flex flex-row gap-2" style="cursor: pointer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12h3.75M9 15h3.75M9 18h3.75m3 .75H18a2.25 2.25 0 0 0 2.25-2.25V6.108c0-1.135-.845-2.098-1.976-2.192a48.424 48.424 0 0 0-1.123-.08m-5.801 0c-.065.21-.1.433-.1.664 0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75 2.25 2.25 0 0 0-.1-.664m-5.8 0A2.251 2.251 0 0 1 13.5 2.25H15c1.012 0 1.867.668 2.15 1.586m-5.8 0c-.376.023-.75.05-1.124.08C9.095 4.01 8.25 4.973 8.25 6.108V8.25m0 0H4.875c-.621 0-1.125.504-1.125 1.125v11.25c0 .621.504 1.125 1.125 1.125h9.75c.621 0 1.125-.504 1.125-1.125V9.375c0-.621-.504-1.125-1.125-1.125H8.25ZM6.75 12h.008v.008H6.75V12Zm0 3h.008v.008H6.75V15Zm0 3h.008v.008H6.75V18Z"
+            />
+          </svg>
+          <span id="code">{{groupId}}</span>
         </div>
       </div>
-        <!-- 시간 -->
-        <div class="flex flex-col items-center md:mr-10">
-          <div class="font-mono text-lg">나의시간표</div>
-          <!-- 요일 -->
-          <div class="flex flex-row gap-3">
-            <div class="flex flex-col mt-[25px]">
-              <div class="time">00:00</div>
-              <div class="time">01:00</div>
-              <div class="time">02:00</div>
-              <div class="time">03:00</div>
-              <div class="time">04:00</div>
-              <div class="time">05:00</div>
-              <div class="time">06:00</div>
-              <div class="time">07:00</div>
-              <div class="time">08:00</div>
-              <div class="time">09:00</div>
-              <div class="time">10:00</div>
-              <div class="time">11:00</div>
-              <div class="time">12:00</div>
-              <div class="time">13:00</div>
-              <div class="time">14:00</div>
-              <div class="time">15:00</div>
-              <div class="time">16:00</div>
-              <div class="time">17:00</div>
-              <div class="time">18:00</div>
-              <div class="time">19:00</div>
-              <div class="time">20:00</div>
-              <div class="time">21:00</div>
-              <div class="time">22:00</div>
-              <div class="time">23:00</div>
-              <div class="time">24:00</div>
+      <!-- 시간 -->
+      <div class="flex flex-col items-center md:mr-10">
+        <div class="font-mono text-lg">나의시간표</div>
+        <!-- 요일 -->
+        <div class="flex flex-row gap-3">
+          <div class="flex flex-col mt-[25px]">
+            <div class="time">00:00</div>
+            <div class="time">01:00</div>
+            <div class="time">02:00</div>
+            <div class="time">03:00</div>
+            <div class="time">04:00</div>
+            <div class="time">05:00</div>
+            <div class="time">06:00</div>
+            <div class="time">07:00</div>
+            <div class="time">08:00</div>
+            <div class="time">09:00</div>
+            <div class="time">10:00</div>
+            <div class="time">11:00</div>
+            <div class="time">12:00</div>
+            <div class="time">13:00</div>
+            <div class="time">14:00</div>
+            <div class="time">15:00</div>
+            <div class="time">16:00</div>
+            <div class="time">17:00</div>
+            <div class="time">18:00</div>
+            <div class="time">19:00</div>
+            <div class="time">20:00</div>
+            <div class="time">21:00</div>
+            <div class="time">22:00</div>
+            <div class="time">23:00</div>
+            <div class="time">24:00</div>
           </div>
           <div id="my_calendar" class="grid grid-cols-7 bg-white mb-5">
             <div class="week">월</div>
@@ -61,14 +73,29 @@
             <div class="week">금</div>
             <div class="week">토</div>
             <div class="week">일</div>
-            {% for row in myschedule %} {% for cell in row%} {% if cell == '0' %}
-            <div id="cell" class="cell_nomal" data-active="0"></div>
+            {% for y in range(25) %} {% for x in range(7)%} {% if
+            myschedule[y][x] == '0' %}
+            <div
+              id="cell"
+              class="cell_nomal"
+              data-y="{{y}}"
+              data-x="{{x}}"
+              data-active="0"
+            ></div>
             {% else %}
-            <div id="cell" class="cell_nomal cell_select" data-active="1"></div>
+            <div
+              id="cell"
+              class="cell_nomal cell_select"
+              data-row="{{row}}"
+              data-cell="{{cell}}"
+              data-active="1"
+            ></div>
             {% endif %} {% endfor %} {% endfor %}
           </div>
         </div>
-        <button id="upload_btn" class="btn btn-primary px-4 mb-10 w-1/2">작성</button>
+        <button id="upload_btn" class="btn btn-primary px-4 mb-10 w-1/2">
+          작성
+        </button>
       </div>
       <div class="flex flex-col items-center md:mr-10">
         <div class="font-mono text-lg">공유시간표</div>
@@ -100,34 +127,43 @@
             <div class="time">22:00</div>
             <div class="time">23:00</div>
             <div class="time">24:00</div>
+          </div>
+          <div id="my_calendar" class="grid grid-cols-7 bg-white mb-5">
+            <div class="week">월</div>
+            <div class="week">화</div>
+            <div class="week">수</div>
+            <div class="week">목</div>
+            <div class="week">금</div>
+            <div class="week">토</div>
+            <div class="week">일</div>
+            {% for y in range(25) %} {% for x in range(7)%}
+            <div
+              id="all_cell"
+              class="cell_nomal bg-sky-500/[{{all_schedule[y][x]}}]"
+              data-active="0"
+              data-y="{{y}}"
+              data-x="{{x}}"
+              data-users="{{active_user_list[y][x]}}"
+            ></div>
+            {% endfor %} {% endfor %}
+          </div>
         </div>
-        <div id="my_calendar" class="grid grid-cols-7 bg-white mb-5">
-          <div class="week">월</div>
-          <div class="week">화</div>
-          <div class="week">수</div>
-          <div class="week">목</div>
-          <div class="week">금</div>
-          <div class="week">토</div>
-          <div class="week">일</div>
-          {% for row in all_schedule %} {% for cell in row%} 
-          <div id="cell" class="cell_nomal bg-sky-500/[{{cell}}]" data-active="0"></div>
-          {% endfor %} {% endfor %}
-        </div>
+        <button id="load_btn" class="btn btn-accent px-4 mb-10 w-1/2">
+          불러오기
+        </button>
       </div>
-      <button id="load_btn" class="btn btn-accent px-4 mb-10 w-1/2">불러오기</button>
-    </div>
     </div>
     <div class="bg-sky-500/[0.0]">
-      <div class="bg-sky-500/[0.1]"/>
-      <div class="bg-sky-500/[0.2]"/>
-      <div class="bg-sky-500/[0.3]"/>
-      <div class="bg-sky-500/[0.4]"/>
-      <div class="bg-sky-500/[0.5]"/>
-      <div class="bg-sky-500/[0.6]"/>
-      <div class="bg-sky-500/[0.7]"/>
-      <div class="bg-sky-500/[0.8]"/>
-      <div class="bg-sky-500/[0.9]"/>
-      <div class="bg-sky-500/[1.0]"/>
+      <div class="bg-sky-500/[0.1]" />
+      <div class="bg-sky-500/[0.2]" />
+      <div class="bg-sky-500/[0.3]" />
+      <div class="bg-sky-500/[0.4]" />
+      <div class="bg-sky-500/[0.5]" />
+      <div class="bg-sky-500/[0.6]" />
+      <div class="bg-sky-500/[0.7]" />
+      <div class="bg-sky-500/[0.8]" />
+      <div class="bg-sky-500/[0.9]" />
+      <div class="bg-sky-500/[1.0]" />
     </div>
     <script>
       const $myCal = document.getElementById("my_calendar");
@@ -154,20 +190,19 @@
         }
         const code = codeArr.toString();
         console.log(code);
-        const g_code = document.getElementById('code').innerText;
-        try{
-          fetch(`/schedule_post/${g_code}`,{
-            method:'POST',
-            headers:{
+        const g_code = document.getElementById("code").innerText;
+        try {
+          fetch(`/schedule_post/${g_code}`, {
+            method: "POST",
+            headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({my_schedule : code})
-          })
-          .then(sucess=>{
-            window.location.href = `/schedul/${g_code}`
-          })
+            body: JSON.stringify({ my_schedule: code }),
+          }).then((sucess) => {
+            document.location.reload();
+          });
         } catch (error) {
-          console.log(error)
+          console.log(error);
         }
       }
 
@@ -177,9 +212,9 @@
         $cell.addEventListener("click", clcikCell);
       });
 
-      document.getElementById('code').addEventListener("click", ()=>{
-        const code = document.getElementById('code').innerText;
-        console.log(code)
+      document.getElementById("code").addEventListener("click", () => {
+        const code = document.getElementById("code").innerText;
+        console.log(code);
         const tempElement = document.createElement("textarea");
         tempElement.value = code;
         document.body.appendChild(tempElement);
@@ -189,7 +224,26 @@
         tempElement.setSelectionRange(0, 0);
         document.body.removeChild(tempElement);
         alert("텍스트가 클립보드에 복사되었습니다.");
-      })
+      });
+      // let startDrag = false;
+      // function startDrage(event) {
+      //   startDrag = true;
+      //   console.log("스타트", event.target);
+      // }
+
+      // function drag(e) {
+      //   if (startDrag) {
+      //     console.log(e.target);
+      //   }
+      // }
+
+      // function endDrag(event) {
+      //   startDrag = false;
+      //   console.log("엔드", event.target);
+      // }
+      // $myCal.addEventListener("mousedown", startDrage);
+      // $myCal.addEventListener("mousemove", drag);
+      // $myCal.addEventListener("mouseup", endDrag);
     </script>
   </body>
 </html>
