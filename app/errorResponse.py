@@ -12,3 +12,9 @@ def duplicated_error(msg):
     response.status_code=errorConstant.DUPLICATED
     response.headers['Content-Type'] = 'application/json'
     return response
+
+def valid_error(msg):
+    response = make_response(jsonify({"msg": msg, "status" : errorConstant.NOT_VALID}))
+    response.status_code=errorConstant.DUPLICATED
+    response.headers['Content-Type'] = 'application/json'
+    return response
