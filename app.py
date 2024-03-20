@@ -14,7 +14,7 @@ load_dotenv()
 
 app = Flask(__name__)
 jwt= JWTManager(app)
-secret_key = os.environ.get('COOKIE_TOKEN_KEY')
+secret_key = os.environ.get('SECRET_KEY')
 app.config['JWT_SECRET_KEY'] = secret_key
 
 app.add_url_rule('/', 'lobby', lobby_routes['lobby'] , methods=['GET'])
