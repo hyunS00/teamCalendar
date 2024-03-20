@@ -14,9 +14,11 @@ def signup():
 
 # 회원가입 요청
 def signup_post():
-    username = request.form['username']
-    userId = request.form['userId']
-    password = request.form['password']
+    data = request.json
+    username = data.get("username")
+    userId = data.get("userId")
+    password= data.get("password")
+
     hashed_password = pbkdf2_sha256.hash(password)
     
     if db.users.find_one({'userId': userId}):
@@ -29,8 +31,9 @@ def signup_post():
         token, expiredTime = tokenProvider.provide(userUUID, username)
         
         # 토큰을 쿠키에 담는다.
-        response = make_response(redirect(url_for('lobby', username=username))) 
+        response = make_response()
         response.set_cookie(authConstant.COOKIE_TOKEN_KEY, token, expires=expiredTime) 
+        print(response)
         return response
     
 signup_routes = {
