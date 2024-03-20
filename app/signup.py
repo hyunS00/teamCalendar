@@ -1,18 +1,21 @@
 from flask import (render_template, request, make_response, redirect, url_for)
 from app import db
-from app import authConstant
 from app import tokenProvider
 from passlib.hash import pbkdf2_sha256
 from app.errorResponse import valid_error
 from app.errorResponse import duplicated_error
 from app.successReponse import success
 from typing import Final
+from dotenv import load_dotenv
+import os
 
 MIN_LENGTH_USER_ID: Final = 5
 
 DUPLICATED_USER_MESSAGE: Final = "이미 존재하는 사용자입니다."
 MIN_LENGTH_USER_ID_MESSAGGE: Final = "아이디는 5글자 이상입니다."
 
+
+load_dotenv()
 # 회원가입 페이지
 def signup():
     return render_template('signup.html')
@@ -40,7 +43,9 @@ def signup_post():
         
         # 토큰을 쿠키에 담는다.
         response = success()
-        response.set_cookie(authConstant.COOKIE_TOKEN_KEY, token, expires=expiredTime) 
+        os.chdir('../')
+        token_key = os.environ.get('COOKIE_TOKEN_KEY')
+        response.set_cookie(token_key, token, expires=expiredTime) 
         return response
     
 signup_routes = {

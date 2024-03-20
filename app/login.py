@@ -1,13 +1,16 @@
 from flask import (render_template, request, make_response, redirect, url_for, jsonify)
 from app import db
 from passlib.hash import pbkdf2_sha256
-from app import authConstant
 from app import tokenProvider
 from app.errorResponse import not_found_error
 from app.successReponse import success
 from typing import Final
+import os
+from dotenv import load_dotenv
 
 NOT_FOUND_USER: Final = "해당하는 사용자가 없습니다."
+
+load_dotenv()
 
 # 로그인 페이지
 def login():
@@ -38,7 +41,9 @@ def login_post():
         
         # 쿠키에 토큰 담기
         response = success()
-        response.set_cookie(authConstant.COOKIE_TOKEN_KEY, token, expires=expiredTime) 
+        os.chdir('../')
+        token_key = os.environ.get('COOKIE_TOKEN_KEY')
+        response.set_cookie(token_key, token, expires=expiredTime) 
         return response
     else:
         return not_found_error(NOT_FOUND_USER)
