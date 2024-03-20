@@ -10,7 +10,7 @@
   <div class="flex flex-col w-screen h-screen items-center justify-center">
     <div class="font-bold text-center"> modoo calendar </div>
     <div class="bg-white p-5 rounded-2xl shadow-md">
-      <form class="flex flex-col gap-5 justify-center " action="/signup" method="POST">
+      <form id="signup_form" class="flex flex-col gap-5 justify-center " action="/signup" method="POST">
         <input required placeholder="아이디" name="userId" class="input" type="text">
         <input required placeholder="이름" name="username" class="input" type="text">
         <input required placeholder="비밀번호" name="password" class="input" type="password">
@@ -20,5 +20,24 @@
       </form>
     </div>
   </div>
+  <script>
+    const signup_form = document.getElementById('signup_form');
+    signup_form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const formData = new FormData(signup_form);
+      try {
+        const responce = await fetch('/signup', {
+          method: 'POST',
+          body: formData,
+        })
+        const result = await responce.json();
+        if (result.msg){
+          alert(result.msg)
+        }
+      } catch (error) {
+        window.location.href = '/error.html'
+      }
+    })
+  </script>
 </body>
 </html>

@@ -11,7 +11,7 @@
   <div class="flex flex-col w-screen h-screen items-center justify-center">
     <div class="font-bold text-center"> modoo calendar</div>
     <div class="bg-white p-5 rounded-2xl shadow-md flex flex-col gap-3">
-      <form class="flex flex-col gap-5" action="/login_post" method="POST" >
+      <form id="login_form" class="flex flex-col gap-5" action="/login_post" method="POST" >
         <input required placeholder="아이디" class="input" name="userId" type="text">
         <input required placeholder="비밀번호" class="input" name="password" type="password">
         <button class="btn btn-primary">로그인</button>
@@ -19,6 +19,24 @@
       <button onclick="location.href='/signup'" class="btn w-full">회원가입</button> 
     </div>
   </div>
-
+  <script>
+      const login_form = document.getElementById('login_form');
+      login_form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const formData = new FormData(login_form);
+      try {
+        const responce = await fetch('/signup', {
+          method: 'POST',
+          body: formData,
+        })
+        const result = await responce.json();
+        if (result.msg){
+          alert(result.msg)
+        }
+      } catch (error) {
+        window.location.href = '/error.html'
+      }
+    })
+  </script>
 </body>
 </html>
