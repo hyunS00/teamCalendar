@@ -24,14 +24,13 @@ def login_post():
     if user is None:
         return not_found_error(NOT_FOUND_USER)
     
+    print(userId)
     hashedPassword=user["password"]
-    print(user["password"])
+    print("해독")
     print(hashedPassword)
+    print("받은 값")
     print(password)
     if(pbkdf2_sha256.verify(password, hashedPassword)):
-        return not_found_error(NOT_FOUND_USER)
-    
-    else:
         userId = user.get('userId')
         userName = user.get('username')
     
@@ -42,6 +41,8 @@ def login_post():
         response = success()
         response.set_cookie(authConstant.COOKIE_TOKEN_KEY, token, expires=expiredTime) 
         return response
+    else:
+        return not_found_error(NOT_FOUND_USER)
             
 login_routes = {
     'login': login,

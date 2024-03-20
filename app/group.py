@@ -5,6 +5,7 @@ import uuid
 from app.checkLogin import is_member
 from app.errorResponse import not_found_error
 from typing import Final
+from app.successReponse import success
 
 NOT_FOUND_GROUP: Final = "해당하는 방이 없습니다."
 
@@ -20,9 +21,11 @@ def create_group(username, userUUID):
     group_data = {
         'title' : title_receive, 'date' : start_date_receive, 'userUUID' : userUUID, 'group_uuid': group_code
     }
-
+    
     db.groups.insert_one(group_data)
-    return redirect(url_for("schedule", group_code=group_code))
+    response = success()
+    return response
+
 
 @is_member
 def find_group(username, userUUID):   
@@ -35,7 +38,8 @@ def find_group(username, userUUID):
         return not_found_error(NOT_FOUND_GROUP)
     
     else:
-        return redirect(url_for("schedule", group_code=group_code))
+        response = success()
+        return response
 
 group_routes = {
     'group': group,
