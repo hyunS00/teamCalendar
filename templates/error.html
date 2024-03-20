@@ -10,10 +10,10 @@
   <div class="flex flex-col w-screen h-screen items-center justify-center">
     {% if error %}
     <div class="font-bold text-center">{{error.msg}}</div>
-    <a onclick="location.href='/signup'" class="btn">로그인</a>
+    <a onclick="location.href='/signup'" class="btn mb-5">로그인</a>
     {% else %}
     <div class="font-bold text-center">요청시간이 만료되었습니다</div>
-    <a onclick="location.href='/signup'" class="btn">로그인</a>
+    <a onclick="location.href='/signup'" class="btn mb-5">로그인</a>
     {% endif%}
     </div>
   </div>
