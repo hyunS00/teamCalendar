@@ -26,7 +26,8 @@ def get_cnt_list(code_list):
     return cnt
 
 
-def schedule():
+@is_member
+def schedule(username, userUUId, group_code):
     myschedule = "0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0"
     bin_list = convert_binary(myschedule)
     

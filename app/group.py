@@ -18,14 +18,16 @@ def create_group(username, userUUID):
     }
 
     db.groups.insert_one(group_data)
-    return redirect(url_for("schedul", title=title_receive, group_code=group_uuid))
+    return redirect(url_for("schedule", group_code=group_uuid))
 
 @is_member
 def find_group(username, userUUID):   
-    # 방 찾은 이후에 해당 방 스케줄로 들어가기
-    group_code = request.form['group_code']
-    group = db.groups.find_one({"groupd_code" : group_code})
-    return render_template("schedul.html", group_code= group_code)
+    group_code = request.args.get("group_code")
+    group = db.groups.find_one({"group_code" : group_code})
+    if group is None:
+        redirect(url_for("find_group"))
+    
+    return redirect(url_for("schedule", group_code=group_code))
 
 group_routes = {
     'group': group,
