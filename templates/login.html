@@ -37,11 +37,14 @@
           body: JSON.stringify(form),
         });
         const result = await response.json();
-        if (result.status == "200") {
+        if (response.status == 200) {
           window.location.href = "/lobby";
         }
-        else if (result.status == "404") {
+        else if (response.status == 404) {
           alert(result.msg);
+        }
+        else {
+          window.location.href = "/error";
         }
       } catch (error) {
         window.location.href = "/error";

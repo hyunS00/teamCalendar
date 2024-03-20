@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html  data-theme="dim" lang="en">
+<html data-theme="dim" lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{url_for('static', filename='/main.css')}}">
   <title>modoo calendar</title>
 </head>
-<body >
+
+<body>
   <div class="flex flex-col items-center gap-4">
     <div class="font-bold text-center"> modoo calendar </div>
     <div class="font-mono text-lg"> {{username}}님 환영합니다 </div>
@@ -14,44 +16,37 @@
   <div class="flex flex-col w-screen h-screen items-center justify-center gap-4">
     <div class="font-bold text-center"> 그룹정보를 입력해주세요 </div>
     <div class="*:text-left flex flex-col gap-2 bg-white shadow-md rounded-xl p-5">
-      <input id="title" type="text" class="btn" placeholder="방이름" required >
-      <input id="date" type="date" class="btn w-full" required >
+      <input id="title" type="text" class="btn" placeholder="방이름" required>
+      <input id="date" type="date" class="btn w-full" required>
       <button id="group_btn" class="btn btn-accent">방만들기</button>
-  </div>
+    </div>
 
     <a href="/lobby" class="text-white text-sm text-center -mt-2">로비로 나가기</a>
   </div>
   <script>
-      const group_btn = document.getElementById('group_btn');
-      group_btn.addEventListener('click', async () => {
+    const group_btn = document.getElementById('group_btn');
+    group_btn.addEventListener('click', async () => {
       const title = document.getElementById('title').value;
       const date = document.getElementById('date').value;
-      const form = {"title" : title, "date" : date};
+      const form = { "title": title, "date": date };
       try {
-        const responce = await fetch('/create_group', {
+        const response = await fetch('/create_group', {
           method: 'POST',
-          headers:{
-              "Content-Type": "application/json",
-            },
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify(form)
-        })
-        result = await response.json();
+        });
+        const result = await response.json();
 
-        if (response.status == 200) {
-          window.location.href = '/schedule';
-        }
-
-        else if (response.status == 400) {
+        if (response.status === 200) {
+          window.location.href = `/schedule/${result.code}`;
+        } else if (response.status === 400) {
           alert(result.msg);
         }
-
-        else {
-          window.location.href = '/error';
-        }
       } catch (error) {
-        window.location.href = '/error.html'
+        window.location.href = '/error';
       }
-    })
+    });
   </script>
 </body>
-</html>

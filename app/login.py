@@ -28,10 +28,7 @@ def login_post():
     
     print(userId)
     hashedPassword=user["password"]
-    print("해독")
-    print(hashedPassword)
-    print("받은 값")
-    print(password)
+    
     if(pbkdf2_sha256.verify(password, hashedPassword)):
         userId = user.get('userId')
         userName = user.get('username')
