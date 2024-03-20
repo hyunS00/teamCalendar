@@ -32,7 +32,7 @@ def find_group(username, userUUID):
     group = db.groups.find_one({"group_uuid" : group_code})
     
     if group is None:
-        not_found_error(NOT_FOUND_GROUP)
+        return not_found_error(NOT_FOUND_GROUP)
     
     else:
         return redirect(url_for("schedule", group_code=group_code))
