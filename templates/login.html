@@ -27,7 +27,7 @@
       const form = {"userId" : userId, "userword" : password};
       console.log(formData)
       try {
-        const responce = await fetch('/signup', {
+        const responce = await fetch('/login_post', {
           method: 'POST',
           headers:{
               "Content-Type": "application/json",

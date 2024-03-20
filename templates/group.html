@@ -13,8 +13,7 @@
   </div>
   <div class="flex flex-col w-screen h-screen items-center justify-center gap-4">
     <div class="font-bold text-center"> 그룹정보를 입력해주세요 </div>
-    <div action="/create_group" method="POST"
-    class="*:text-left flex flex-col gap-2 bg-white shadow-md rounded-xl p-5">
+    <div class="*:text-left flex flex-col gap-2 bg-white shadow-md rounded-xl p-5">
       <input id="title" type="text" class="btn" placeholder="방이름" required >
       <input id="date" type="date" class="btn w-full" required >
       <button id="group_btn" class="btn btn-accent">방만들기</button>
@@ -27,10 +26,9 @@
       group_btn.addEventListener('click', async () => {
       const title = document.getElementById('title').value;
       const date = document.getElementById('date').value;
-      console.log(title, date)
-      const form = {"userId" : userId, "userword" : password};
+      const form = {"title" : title, "date" : date};
       try {
-        const responce = await fetch('/signup', {
+        const responce = await fetch('/create_group', {
           method: 'POST',
           headers:{
               "Content-Type": "application/json",
