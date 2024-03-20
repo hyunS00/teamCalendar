@@ -11,23 +11,28 @@
   <div class="flex flex-col w-screen h-screen items-center justify-center">
     <div class="font-bold text-center"> modoo calendar</div>
     <div class="bg-white p-5 rounded-2xl shadow-md flex flex-col gap-3">
-      <form id="login_form" class="flex flex-col gap-5" action="/login_post" method="POST" >
-        <input required placeholder="아이디" class="input" name="userId" type="text">
-        <input required placeholder="비밀번호" class="input" name="password" type="password">
-        <button class="btn btn-primary">로그인</button>
-      </form>
+      <div class="flex flex-col gap-5">
+        <input required placeholder="아이디" class="input" id="userId" type="text">
+        <input required placeholder="비밀번호" class="input" id="password" type="password">
+        <button id="login_btn" class="btn btn-primary">로그인</button>
+      </div>
       <button onclick="location.href='/signup'" class="btn w-full">회원가입</button> 
     </div>
   </div>
   <script>
-      const login_form = document.getElementById('login_form');
-      login_form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const formData = new FormData(login_form);
+      const login_btn = document.getElementById('login_btn');
+      login_btn.addEventListener('click', async () => {
+      const userId = document.getElementById('userId');
+      const password = document.getElementById('password');
+      const form = {"userId" : userId, "userword" : password};
+      console.log(formData)
       try {
         const responce = await fetch('/signup', {
           method: 'POST',
-          body: formData,
+          headers:{
+              "Content-Type": "application/json",
+            },
+          body: JSON.stringify(form)
         })
         const result = await responce.json();
         if (result?.status == '404'){

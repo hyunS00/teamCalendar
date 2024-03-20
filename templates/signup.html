@@ -10,25 +10,30 @@
   <div class="flex flex-col w-screen h-screen items-center justify-center">
     <div class="font-bold text-center"> modoo calendar </div>
     <div class="bg-white p-5 rounded-2xl shadow-md">
-      <form id="signup_form" class="flex flex-col gap-5 justify-center " action="/signup" method="POST">
-        <input required placeholder="아이디" name="userId" class="input" type="text">
-        <input required placeholder="이름" name="username" class="input" type="text">
-        <input required placeholder="비밀번호" name="password" class="input" type="password">
-        <button class="btn btn-primary px-10 w-full">가입</button>
+      <div class="flex flex-col gap-5 justify-center " >
+        <input required placeholder="아이디" id="userId" class="input" type="text">
+        <input required placeholder="이름" id="username" class="input" type="text">
+        <input required placeholder="비밀번호" id="password" class="input" type="password">
+        <button id="signup_btn"  class="btn btn-primary px-10 w-full">가입</button>
         <div class="w-full h-0.5 bg-slate-500 rounded-full"></div>
         <a href="/login" class="text-black text-sm text-center -mt-2">아이디가 이미 있으신가요?</a>
-      </form>
+      </div>
     </div>
   </div>
   <script>
-    const signup_form = document.getElementById('signup_form');
-    signup_form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const formData = new FormData(signup_form);
+    const signup_btn = document.getElementById('signup_btn');
+    signup_btn.addEventListener('click', async () => {
+      const userId = document.getElementById('userId');
+      const username = document.getElementById('username');
+      const password = document.getElementById('password');
+      form = {'userId' : userId ,'username': username,'password':password};
       try {
         const responce = await fetch('/signup', {
           method: 'POST',
-          body: formData,
+          headers:{
+              "Content-Type": "application/json",
+            },
+          body: JSON.stringify(form)
         })
         const result = await responce.json();
         if (result?.status == '404'){
