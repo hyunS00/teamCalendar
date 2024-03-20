@@ -7,11 +7,15 @@ from app.schedule import schedule_routes
 from app.error import error_routes
 from app.signout import signout_routes
 from flask_jwt_extended import JWTManager
-from app.authConstant import SECRET_KEY
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__)
 jwt= JWTManager(app)
-app.config['JWT_SECRET_KEY'] = SECRET_KEY
+secret_key = os.environ.get('COOKIE_TOKEN_KEY')
+app.config['JWT_SECRET_KEY'] = secret_key
 
 app.add_url_rule('/', 'lobby', lobby_routes['lobby'] , methods=['GET'])
 app.add_url_rule('/signup', 'signup', signup_routes['signup'] , methods=['GET'])
