@@ -18,7 +18,7 @@ def create_group(username, userUUID):
     data = request.json
     
     title = data.get("title")
-    date = data.get("data")
+    date = data.get("date")
     
     group_code = str(uuid.uuid4()).split('-')[0] 
     group_data = {
