@@ -19,11 +19,11 @@ def login_post():
     
     user = db.users.find_one({'userId': userId})
     if user is None:
-        not_found_error(NOT_FOUND_USER)
+        return not_found_error(NOT_FOUND_USER)
     
     hashedPassword=user["password"]
     if(pbkdf2_sha256.verify(password, hashedPassword)):
-        not_found_error(NOT_FOUND_USER)
+        return not_found_error(NOT_FOUND_USER)
     
     else:
         userId = user.get('userId')

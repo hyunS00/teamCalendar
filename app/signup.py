@@ -20,7 +20,7 @@ def signup_post():
     hashed_password = pbkdf2_sha256.hash(password)
     
     if db.users.find_one({'userId': userId}):
-        not_found_error(DUPLICATED_USER)
+        return not_found_error(DUPLICATED_USER)
     else:
         result = db.users.insert_one({'userId': userId, 'username': username, 'password': hashed_password})
         
