@@ -35,9 +35,18 @@
             },
           body: JSON.stringify(form)
         })
-        const result = await responce.json();
-        if (result?.status == '404'){
-          alert(result.msg)
+        result = await response.json();
+
+        if (response.status == 200) {
+          window.location.href = '/schedule';
+        }
+
+        else if (response.status == 400) {
+          alert(result.msg);
+        }
+
+        else {
+          window.location.href = '/error';
         }
       } catch (error) {
         window.location.href = '/error.html'
