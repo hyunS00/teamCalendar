@@ -3,12 +3,15 @@ from app import db
 from app import authConstant
 from app import tokenProvider
 from passlib.hash import pbkdf2_sha256
-from app.errorResponse import not_found_error
+from app.errorResponse import valid_error
 from app.errorResponse import duplicated_error
 from app.successReponse import success
 from typing import Final
 
-DUPLICATED_USER: Final = "이미 존재하는 사용자입니다."
+MIN_LENGTH_USER_ID: Final = 5
+
+DUPLICATED_USER_MESSAGE: Final = "이미 존재하는 사용자입니다."
+MIN_LENGTH_USER_ID_MESSAGGE: Final = "아이디는 5글자 이상입니다."
 
 # 회원가입 페이지
 def signup():
@@ -23,8 +26,11 @@ def signup_post():
 
     hashed_password = pbkdf2_sha256.hash(password)
     
+    
     if db.users.find_one({'userId': userId}):
-        return duplicated_error(DUPLICATED_USER)
+        return duplicated_error(DUPLICATED_USER_MESSAGE)
+    elif len(userId)< MIN_LENGTH_USER_ID:
+        return valid_error(MIN_LENGTH_USER_ID_MESSAGGE)
     else:
         result = db.users.insert_one({'userId': userId, 'username': username, 'password': hashed_password})
         
