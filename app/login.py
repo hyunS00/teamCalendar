@@ -5,12 +5,9 @@ from app import tokenProvider
 from app.errorResponse import not_found_error
 from app.successReponse import success
 from typing import Final
-import os
-from dotenv import load_dotenv
+from app.cookieManager import set_cookie
 
 NOT_FOUND_USER: Final = "해당하는 사용자가 없습니다."
-
-load_dotenv()
 
 # 로그인 페이지
 def login():
@@ -41,9 +38,7 @@ def login_post():
         
         # 쿠키에 토큰 담기
         response = success()
-        os.chdir('../')
-        token_key = os.environ.get('COOKIE_TOKEN_KEY')
-        response.set_cookie(token_key, token, expires=expiredTime) 
+        set_cookie(response, token, expiredTime)
         return response
     else:
         return not_found_error(NOT_FOUND_USER)
