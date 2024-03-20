@@ -39,8 +39,22 @@ def schedule(username, userUUID,id):
         
         cnt_list = get_cnt_list(schedule)
 
+<<<<<<< HEAD
         return render_template('schedul.html',myschedule=bin_list,all_schedule=cnt_list,groupId=id,title=data['title'],username=username)
     return
+=======
+@is_member
+def schedule(username, userUUId, group_code):
+    myschedule = "0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0"
+    bin_list = convert_binary(myschedule)
+    
+    schedule = ["0,1,2,3,4,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
+                "1,1,2,3,3,5,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,65,0,0,0",
+                "1,0,2,3,4,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,65,0,0,0",
+                "1,1,2,3,4,5,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,65,0,0,0"]
+    
+    cnt_list = get_cnt_list(schedule)
+>>>>>>> hyun
 
     
 

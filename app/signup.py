@@ -4,9 +4,11 @@ from app import authConstant
 from app import tokenProvider
 from passlib.hash import pbkdf2_sha256
 
+# 회원가입 페이지
 def signup():
     return render_template('signup.html')
 
+# 회원가입 요청
 def signup_post():
     username = request.form['username']
     userId = request.form['userId']
@@ -18,11 +20,11 @@ def signup_post():
     else:
         result = db.users.insert_one({'userId': userId, 'username': username, 'password': hashed_password})
         
-        # 토큰을 발급받습니다.
+        # 토큰을 발급한다.
         userUUID = str(result.inserted_id)
         token, expiredTime = tokenProvider.provide(userUUID, username)
         
-        # 토큰을 쿠키에 발급한다.
+        # 토큰을 쿠키에 담는다.
         response = make_response(redirect(url_for('lobby', username=username))) 
         response.set_cookie(authConstant.COOKIE_TOKEN_KEY, token, expires=expiredTime) 
         return response
