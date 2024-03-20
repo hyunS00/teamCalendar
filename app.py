@@ -25,7 +25,7 @@ app.add_url_rule('/create_group','create_group',group_routes['create_group'],met
 app.add_url_rule('/find_group','find_group',group_routes['find_group'],methods=['POST'])
 app.add_url_rule('/lobby','lobby',lobby_routes['lobby'],methods=['GET'])
 app.add_url_rule('/schedule/<group_code>','schedule', schedule_routes['schedule'],methods=["GET"])
-app.add_url_rule('/schedule','schedule_post',schedule_routes['schedule_post'],methods=["POST"])
+app.add_url_rule('/schedule_post/<group_code>','schedule_post',schedule_routes['schedule_post'],methods=["POST"])
 
 if __name__ == '__main__':
     app.run('0.0.0.0', debug=True, port=3000)
