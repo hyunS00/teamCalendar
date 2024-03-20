@@ -2,6 +2,7 @@ from flask import render_template, request, redirect, url_for, make_response
 from app.db import db
 from bson.objectid import ObjectId
 from app.checkLogin import is_member
+import datetime as dt
 
 def convert_binary(code):
     split_list = code.split(',')
@@ -10,6 +11,19 @@ def convert_binary(code):
         bin_list.append(format(int(row),'b').zfill(7))
 
     return bin_list
+
+week_name = ['월','화','수','목','금','토','일']
+
+def get_cal_date(date):
+    currnet_date = dt.datetime.strptime(date,"%Y-%m-%d")
+    date_list = []
+    weeks = []
+    for i in range(7):
+        date_list.append(str(currnet_date.month)+'.'+str(currnet_date.day))
+        weeks.append(week_name[currnet_date.weekday()])
+        currnet_date += dt.timedelta(days=1)
+    
+    return date_list,weeks
 
 
 def get_cnt_list(code_list):
@@ -37,6 +51,8 @@ def get_cnt_list(code_list):
 @is_member
 def schedule(username, userUUID,group_code):
     data =db.groups.find_one({"group_uuid":group_code})
+    print(data)
+    days, weeks = get_cal_date(data["date"])
     if(data):
         schedule = db.schedule.find_one({'userUUID':userUUID,'group_uuid':group_code})
         if(schedule is None):
@@ -53,7 +69,10 @@ def schedule(username, userUUID,group_code):
         cnt_list, active_user_list = get_cnt_list(schedule_list)
         user_len = len(schedule_list)
 
-        return render_template('schedul.html',myschedule=bin_list,all_schedule=cnt_list,groupId=group_code,title=data['title'],username=username, active_user_list =active_user_list,user_len = user_len)
+        return render_template('schedul.html',myschedule=bin_list,all_schedule=cnt_list,groupId=group_code,title=data['title']
+                               ,username=username, active_user_list =active_user_list,user_len = user_len
+                               ,days=days, weeks=weeks
+                               )
     
     response = make_response(redirect(url_for('lobby',group_code=group_code))) 
     return response
