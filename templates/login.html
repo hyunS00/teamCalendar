@@ -22,8 +22,8 @@
   <script>
       const login_btn = document.getElementById('login_btn');
       login_btn.addEventListener('click', async () => {
-      const userId = document.getElementById('userId');
-      const password = document.getElementById('password');
+      const userId = document.getElementById('userId').value;
+      const password = document.getElementById('password').value;
       const form = {"userId" : userId, "userword" : password};
       console.log(formData)
       try {
