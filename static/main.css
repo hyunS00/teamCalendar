@@ -1411,12 +1411,6 @@ html {
   line-height: 1.25rem;
 }
 
-.my {
-  position: fixed;
-  margin-left: -350px;
-  margin-top: -140px;
-}
-
 .static {
   position: static;
 }
@@ -1457,16 +1451,20 @@ html {
   height: 0.125rem;
 }
 
-.h-screen {
-  height: 100vh;
-}
-
 .h-6 {
   height: 1.5rem;
 }
 
+.h-screen {
+  height: 100vh;
+}
+
 .w-1\/2 {
   width: 50%;
+}
+
+.w-6 {
+  width: 1.5rem;
 }
 
 .w-full {
@@ -1475,10 +1473,6 @@ html {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-6 {
-  width: 1.5rem;
 }
 
 .grid-cols-7 {
@@ -1651,6 +1645,10 @@ html {
 @media (min-width: 768px) {
   .md\:fixed {
     position: fixed;
+  }
+
+  .md\:relative {
+    position: relative;
   }
 
   .md\:-mt-\[900px\] {
