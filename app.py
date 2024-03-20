@@ -5,7 +5,7 @@ from app.lobby import lobby_routes
 from app.login import login_routes
 from app.schedule import schedule_routes
 from app.error import error_routes
-
+from app.signout import signout_routes
 from flask_jwt_extended import JWTManager
 from app.authConstant import SECRET_KEY
 
@@ -13,9 +13,11 @@ app = Flask(__name__)
 jwt= JWTManager(app)
 app.config['JWT_SECRET_KEY'] = SECRET_KEY
 
-
+app.add_url_rule('/', 'lobby', lobby_routes['lobby'] , methods=['GET'])
 app.add_url_rule('/signup', 'signup', signup_routes['signup'] , methods=['GET'])
 app.add_url_rule('/signup', 'signup_post', signup_routes['signup_post'], methods=['POST'])
+app.add_url_rule('/signout','signout',signout_routes['signout'])
+
 
 app.add_url_rule('/login', 'login', login_routes['login'] , methods=['GET'])
 app.add_url_rule('/login', 'login_post', login_routes['login_post'], methods=['POST'])
