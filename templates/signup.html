@@ -23,9 +23,9 @@
   <script>
     const signup_btn = document.getElementById('signup_btn');
     signup_btn.addEventListener('click', async () => {
-      const userId = document.getElementById('userId');
-      const username = document.getElementById('username');
-      const password = document.getElementById('password');
+      const userId = document.getElementById('userId').value;
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
       form = {'userId' : userId ,'username': username,'password':password};
       try {
         const responce = await fetch('/signup', {
