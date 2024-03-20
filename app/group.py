@@ -5,7 +5,7 @@ import uuid
 from app.checkLogin import is_member
 from app.errorResponse import not_found_error
 from typing import Final
-from app.successReponse import success, success_with_data
+from app.successReponse import success_with_data
 
 NOT_FOUND_GROUP: Final = "해당하는 방이 없습니다."
 
@@ -27,7 +27,7 @@ def create_group(username, userUUID):
     
     db.groups.insert_one(group_data)
     
-    return success()
+    return success_with_data(group_code)
 
 
 @is_member
