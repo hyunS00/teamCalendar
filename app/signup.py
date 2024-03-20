@@ -4,6 +4,7 @@ from app import authConstant
 from app import tokenProvider
 from passlib.hash import pbkdf2_sha256
 from app.errorResponse import not_found_error
+from app.successReponse import success
 from typing import Final
 
 DUPLICATED_USER: Final = "이미 존재하는 사용자입니다."
@@ -31,8 +32,9 @@ def signup_post():
         token, expiredTime = tokenProvider.provide(userUUID, username)
         
         # 토큰을 쿠키에 담는다.
-        response = make_response()
+        response = success()
         response.set_cookie(authConstant.COOKIE_TOKEN_KEY, token, expires=expiredTime) 
+        print("response 출력")
         print(response)
         return response
     

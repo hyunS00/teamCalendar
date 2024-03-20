@@ -14,7 +14,6 @@ jwt= JWTManager(app)
 app.config['JWT_SECRET_KEY'] = SECRET_KEY
 
 
-# 라우트 등록
 app.add_url_rule('/signup', 'signup', signup_routes['signup'] , methods=['GET'])
 app.add_url_rule('/signup', 'signup_post', signup_routes['signup_post'], methods=['POST'])
 

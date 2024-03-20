@@ -1,20 +1,22 @@
 <!DOCTYPE html>
-<html  data-theme="dim" lang="en">
+<html data-theme="dim" lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="{{url_for('static', filename='/main.css')}}">
   <title>modoo calendar</title>
 </head>
+
 <body>
   <div class="flex flex-col w-screen h-screen items-center justify-center">
     <div class="font-bold text-center"> modoo calendar </div>
     <div class="bg-white p-5 rounded-2xl shadow-md">
-      <div class="flex flex-col gap-5 justify-center " >
+      <div class="flex flex-col gap-5 justify-center ">
         <input required placeholder="아이디" id="userId" class="input" type="text">
         <input required placeholder="이름" id="username" class="input" type="text">
         <input required placeholder="비밀번호" id="password" class="input" type="password">
-        <button id="signup_btn"  class="btn btn-primary px-10 w-full">가입</button>
+        <button id="signup_btn" class="btn btn-primary px-10 w-full">가입</button>
         <div class="w-full h-0.5 bg-slate-500 rounded-full"></div>
         <a href="/login" class="text-black text-sm text-center -mt-2">아이디가 이미 있으신가요?</a>
       </div>
@@ -26,26 +28,41 @@
       const userId = document.getElementById('userId').value;
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
-      form = {'userId' : userId ,'username': username,'password':password};
+      form = { 'userId': userId, 'username': username, 'password': password };
       try {
         const response = await fetch('/signup', {
           method: 'POST',
-          headers:{
-              "Content-Type": "application/json",
-            },
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify(form)
         })
-        const result = await response.json();
-        if(response.ok){
-          window.location.href = '/lobby'
+
+        console.log("result")
+        console.log(result)
+        if (!response.ok) {
+          throw new Error()
         }
-        if (result?.status == '404'){
+
+        const result = await response.json();
+        console.log("response")
+        console.log(response)
+        alert(response)
+        alert(result)
+        const res = await response
+        console.log(res)
+        window.location.href = '/lobby'
+
+        if (await result?.status == '404') {
+          console.log("adfdasfdasfadsf")
           alert(result.msg)
         }
       } catch (error) {
+        alert(error)
         window.location.href = '/error'
       }
     })
   </script>
 </body>
+
 </html>
