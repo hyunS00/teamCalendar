@@ -4,6 +4,7 @@ from passlib.hash import pbkdf2_sha256
 from app import authConstant
 from app import tokenProvider
 from app.errorResponse import not_found_error
+from app.successReponse import success
 from typing import Final
 
 NOT_FOUND_USER: Final = "해당하는 사용자가 없습니다."
@@ -14,8 +15,10 @@ def login():
 
 # 로그인 요청
 def login_post():
-    userId = request.form['userId']
-    password = request.form['password']
+    data = request.json
+
+    userId = data.get("userId")
+    password= data.get("password")
     
     user = db.users.find_one({'userId': userId})
     if user is None:
@@ -33,7 +36,7 @@ def login_post():
         token, expiredTime = tokenProvider.provide(userId, userName)
         
         # 쿠키에 토큰 담기
-        response = make_response(redirect(url_for('lobby'))) 
+        response = success()
         response.set_cookie(authConstant.COOKIE_TOKEN_KEY, token, expires=expiredTime) 
         return response
             
