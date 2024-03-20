@@ -2,15 +2,14 @@ from flask import (render_template, request, make_response, redirect, url_for)
 from app import db
 from passlib.hash import pbkdf2_sha256
 from datetime import timedelta, datetime
-from flask_jwt_extended import create_access_token
 from app import authConstant
 from app import tokenProvider
 
-
+# 로그인 페이지
 def login():
-    # todo : 로그인 페이지로 변경하기
     return render_template('login.html')
 
+# 로그인 요청
 def login_post():
     userId = request.form['userId']
     password = request.form['password']
@@ -24,14 +23,13 @@ def login_post():
         print("비밀번호가 일치하지 않습니다.")
     
     else:
-        # userId와 userName을 가져옵니다.
         userId = user.get('userId')
         userName = user.get('username')
     
-        # 토큰을 발급받습니다.
+        # 토큰 발급
         token, expiredTime = tokenProvider.provide(userId, userName)
         
-        # 토큰을 쿠키에 발급한다.
+        # 쿠키에 토큰 담기
         response = make_response(redirect(url_for('lobby.html'))) 
         response.set_cookie(authConstant.COOKIE_TOKEN_KEY, token, expires=expiredTime) 
         return response
